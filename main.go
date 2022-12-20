@@ -3,6 +3,7 @@ package main
 import (
 	"Max-Inventary/settings"
 	"go.uber.org/fx"
+	"log"
 )
 
 func main() {
@@ -11,7 +12,11 @@ func main() {
 			settings.New,
 		),
 
-		fx.Invoke(),
+		fx.Invoke(
+			func(s *settings.Settings) {
+				log.Print(s)
+			},
+		),
 	)
 	app.Run()
 }
